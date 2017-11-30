@@ -8,7 +8,11 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	autoprefixer = require('gulp-autoprefixer'),
 	cleanCSS = require('gulp-clean-css'),
-	jade = require('gulp-jade');
+	jade = require('gulp-jade'),
+	ttf2woff = require('gulp-ttf2woff'),
+	ttf2woff2 = require('gulp-ttf2woff2'),
+	ttf2eot = require('gulp-ttf2eot');
+
 
 var paths = {
 	srcJs: ['./src/js/main.js', './src/js/**/*.js'],
@@ -17,10 +21,12 @@ var paths = {
 	srcCssVendor: ['./node_modules/normalize.css/normalize.css'],
 	srcImg: './src/img/**/*',
 	srcTemplates: ['./src/templates/**/*.jade', '!./src/templates/layout.jade'],
+	srcFonts: './src/fonts/*.ttf',
 	public: './public',
 	publicJs: './public/js',
 	publicCss: './public/css',
-	publicImg: './public/img'
+	publicImg: './public/img',
+	publicFonts: './public/fonts'
 };
 
 gulp.task('connect', function () {
@@ -98,7 +104,29 @@ gulp.task('img', function() {
 		.pipe(connect.reload());
 });
 
-/* Main tasks */
+// Generate and Copy All main browser Fonts type (woff, woff2, eot, ttf)
+gulp.task('fonts', ['ttf2woff', 'ttf2woff2', 'ttf2eot']);
+// generate ttf2woff + copy original ttf
+gulp.task('ttf2woff', function(){
+	gulp.src([paths.srcFonts])
+		.pipe(ttf2woff({'clone': true}))
+		.pipe(gulp.dest(paths.publicFonts));
+});
+// generate ttf2woff2
+gulp.task('ttf2woff2', function(){
+	gulp.src([paths.srcFonts])
+		.pipe(ttf2woff2())
+		.pipe(gulp.dest(paths.publicFonts));
+});
+// generate ttf2eot
+gulp.task('ttf2eot', function(){
+	gulp.src([paths.srcFonts])
+		.pipe(ttf2eot())
+		.pipe(gulp.dest(paths.publicFonts));
+});
+
+
+/* ******************************** Main tasks ************************ */
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
@@ -109,4 +137,4 @@ gulp.task('watch', function() {
 });
 
 // The default task
-gulp.task('default', ['connect', 'clean', 'html', 'js', 'jsVendor', 'css', 'cssVendor', 'img', 'watch']);
+gulp.task('default', ['connect', 'clean', 'html', 'js', 'jsVendor', 'css', 'cssVendor', 'img', 'fonts', 'watch']);
