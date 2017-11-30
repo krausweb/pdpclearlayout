@@ -1,0 +1,503 @@
+/*
+ * 12-column grid system
+ */
+
+@import "vars"
+@import "mixins"
+
+/* ************************* Grid units ********************** */
+.grid12-1,
+.grid12-2,
+.grid12-3,
+.grid12-4,
+.grid12-5,
+.grid12-6,
+.grid12-7,
+.grid12-8,
+.grid12-9,
+.grid12-10,
+.grid12-11,
+.grid12-12,
+.grid-full,
+.grid-col2-sidebar,
+.grid-col2-main
+  display: inline
+  float: left
+  margin-left: 1%
+  margin-right: 1%
+
+
+/* ******************* Basic grid units width ********************* */
+.grid12-1
+  width: 6.33%
+
+.grid12-2
+  width: 14.66%
+
+.grid12-3
+  width: 23%
+
+.grid12-4
+  width: 31.33%
+
+.grid12-5
+  width: 39.67%
+
+.grid12-6
+  width: 48%
+
+.grid12-7
+  width: 56.33%
+
+.grid12-8
+  width: 64.67%
+
+.grid12-9
+  width: 73%
+
+.grid12-10
+  width: 81.33%
+
+.grid12-11
+  width: 89.67%
+
+.grid12-12,
+.grid-full
+  width: 98%
+
+
+/* *************** Grid units without left margin **************** */
+.no-margin-left.grid12-1
+  margin-left: 0
+  width: 7.33%
+
+.no-margin-left.grid12-2
+  margin-left: 0
+  width: 15.66%
+
+.no-margin-left.grid12-3
+  margin-left: 0
+  width: 24%
+
+.no-margin-left.grid12-4
+  margin-left: 0
+  width: 32.33%
+
+.no-margin-left.grid12-5
+  margin-left: 0
+  width: 40.67%
+
+.no-margin-left.grid12-6
+  margin-left: 0
+  width: 49%
+
+.no-margin-left.grid12-7
+  margin-left: 0
+  width: 57.33%
+
+.no-margin-left.grid12-8
+  margin-left: 0
+  width: 65.67%
+
+.no-margin-left.grid12-9
+  margin-left: 0
+  width: 74%
+
+.no-margin-left.grid12-10
+  margin-left: 0
+  width: 82.33%
+
+.no-margin-left.grid12-11
+  margin-left: 0
+  width: 90.67%
+
+.no-margin-left.grid12-12,
+.no-margin-left.grid-full
+  margin-left: 0
+  width: 99%
+
+
+/* ************ Grid units without right margin **************** */
+.no-margin-right.grid12-1
+  margin-right: 0
+  width: 7.33%
+
+.no-margin-right.grid12-2
+  margin-right: 0
+  width: 15.66%
+
+.no-margin-right.grid12-3
+  margin-right: 0
+  width: 24%
+
+.no-margin-right.grid12-4
+  margin-right: 0
+  width: 32.33%
+
+.no-margin-right.grid12-5
+  margin-right: 0
+  width: 40.67%
+
+.no-margin-right.grid12-6
+  margin-right: 0
+  width: 49%
+
+.no-margin-right.grid12-7
+  margin-right: 0
+  width: 57.33%
+
+.no-margin-right.grid12-8
+  margin-right: 0
+  width: 65.67%
+
+.no-margin-right.grid12-9
+  margin-right: 0
+  width: 74%
+
+.no-margin-right.grid12-10
+  margin-right: 0
+  width: 82.33%
+
+.no-margin-right.grid12-11
+  margin-right: 0
+  width: 90.67%
+
+.no-margin-right.grid12-12,
+.no-margin-right.grid-full
+  margin-right: 0
+  width: 99%
+
+
+/* ******************* Grid units without any margin ********** */
+.no-margin.grid12-1
+  margin-left: 0
+  margin-right: 0
+  width: 8.33%
+
+.no-margin.grid12-2
+  margin-left: 0
+  margin-right: 0
+  width: 16.66%
+
+.no-margin.grid12-3
+  margin-left: 0
+  margin-right: 0
+  width: 25%
+
+.no-margin.grid12-4
+  margin-left: 0
+  margin-right: 0
+  width: 33.33%
+
+.no-margin.grid12-5
+  margin-left: 0
+  margin-right: 0
+  width: 41.67%
+
+.no-margin.grid12-6
+  margin-left: 0
+  margin-right: 0
+  width: 50%
+
+.no-margin.grid12-7
+  margin-left: 0
+  margin-right: 0
+  width: 58.33%
+
+.no-margin.grid12-8
+  margin-left: 0
+  margin-right: 0
+  width: 66.67%
+
+.no-margin.grid12-9
+  margin-left: 0
+  margin-right: 0
+  width: 75%
+
+.no-margin.grid12-10
+  margin-left: 0
+  margin-right: 0
+  width: 83.33%
+
+.no-margin.grid12-11
+  margin-left: 0
+  margin-right: 0
+  width: 91.67%
+
+.no-margin.grid12-12,
+.no-margin.grid-full
+  margin-left: 0
+  margin-right: 0
+  width: 100%
+
+
+/* ******************* Special grid units: basic structure of pages with 1 and 2 sidebars **********
+ * 2 columns: fixed-width sidebar unit and fluid main unit.
+ * Sidebar unit has the same width for all screen sizes equal or greater than 1280px.
+ * Width of the main unit is fluid */
+.grid-col2-sidebar
+  width: 23%
+
+.grid-col2-main
+  width: 73%
+
+.no-margin.grid-col2-sidebar
+  margin-left: 0
+  margin-right: 0
+  width: 25%
+
+.no-margin.grid-col2-main
+  margin-left: 0
+  margin-right: 0
+  width: 75%
+
+
+/* *********** Another 2 columns inside ".grid-col2-main": fixed-width sidebar unit and fluid main unit ****** */
+.grid-col3-sidebar
+  width: 31.52%
+
+.grid-col3-main
+  width: 65.90%
+
+.no-margin.grid-col3-sidebar
+  margin-left: 0
+  margin-right: 0
+  width: 31.52%
+
+.no-margin.grid-col3-main
+  margin-left: 0
+  margin-right: 0
+  width: 65.90%
+
+
+/* ************************** Vertically aligned grid ********************** */
+.v-grid-container
+  display: table
+  width: 100%
+
+.v-grid
+  float: none
+  display: table-cell
+  vertical-align: middle
+
+
+/* ************************ Containers **************************
+ *************************** Clear floats ******************** */
+.inner-container:before,
+.inner-container:after
+  display: table
+  line-height: 0
+  content: ""
+
+.inner-container:after
+  clear: both
+
+/* ******************* Full width container ********************* */
+.container.full-width
+  width: 100%
+  max-width: none
+
+
+/* ******************** Expanded container (without inner side padding) *********** */
+.container.no-side-padding > .inner-container
+  padding-left: 0
+  padding-right: 0
+
+
+/* ******************** Grid units container ********************
+ * clears floats (place grid units inside "div" with this class) */
+.grid-container
+  *zoom: 1
+  clear: both
+
+.grid-container:before,
+.grid-container:after
+  display: table
+  line-height: 0
+  content: ""
+
+.grid-container:after
+  clear: both
+
+
+/* *********** clears floats and adds vertical margin between units ******** */
+.grid-container-spaced
+  *zoom: 1
+  clear: both
+
+.grid-container-spaced:before,
+.grid-container-spaced:after
+  display: table
+  line-height: 0
+  content: ""
+
+.grid-container-spaced:after
+  clear: both
+
+.grid-container-spaced .grid12-1,
+.grid-container-spaced .grid12-2,
+.grid-container-spaced .grid12-3,
+.grid-container-spaced .grid12-4,
+.grid-container-spaced .grid12-5,
+.grid-container-spaced .grid12-6,
+.grid-container-spaced .grid12-7,
+.grid-container-spaced .grid12-8,
+.grid-container-spaced .grid12-9,
+.grid-container-spaced .grid12-10,
+.grid-container-spaced .grid12-11,
+.grid-container-spaced .grid12-12,
+.grid-container-spaced .grid-full
+  margin-bottom: 2%
+
+
+/* ********************** Grid presentation ****************** */
+.show-grid [class*="grid12-"]
+  background-color: #f6f6f6
+  text-align: center
+  min-height: 30px
+  line-height: 30px
+  transition: all 300ms ease-in-out
+
+.show-grid [class*="grid12-"]:hover
+  background-color: #ebebeb
+
+
+/* ******************** Utility classes ************************************ */
+.no-margin-left,
+.no-margin-right
+  margin-left: 0
+  margin-right: 0
+
+.margin-right
+  margin-right: $gap
+.margin-right-2
+  margin-right: $gap * 2
+.margin-right-3
+  margin-right: $gap * 3
+.margin-right-4
+  margin-right: $gap * 4
+.margin-right-5
+  margin-right: $gap * 5
+
+.margin-left
+  margin-left: $gap
+.margin-left-2
+  margin-left: $gap * 2
+.margin-left-3
+  margin-left: $gap * 3
+.margin-left-4
+  margin-left: $gap * 4
+.margin-left-5
+  margin-left: $gap * 5
+
+
+/* ************************ Desktop version ************************ */
+@media only screen and (min-width: $desktop-min-width)
+  .container
+    max-width: $desktop-width-container
+    margin-left: auto
+    margin-right: auto
+
+  .nested-container
+    margin-left: auto
+    width: 100%
+
+  .grid-col2-sidebar
+    width: 18.84%
+
+  .grid-col2-main
+    width: 77.15%
+
+  .no-margin.grid-col2-sidebar
+    width: 20.84%
+
+  .no-margin.grid-col2-main
+    width: 79.15%
+
+  .grid-col3-sidebar
+    width: 24.42%
+
+  .grid-col3-main
+    width: 72.98%
+
+  .no-margin.grid-col3-sidebar
+    width: 24.42%
+
+  .no-margin.grid-col3-main
+    width: 72.98%
+
+  .hide-below-835,
+  .hide-below-640
+    display: inherit
+
+
+/* *************************** Tablet version ************************* */
+@media only screen and (min-width: $tablet-min-width) and (max-width: $desktop-max-width)
+  .container
+    max-width: $tablet-width-container
+
+  .grid-col2-sidebar
+    width: 20.41%
+
+  .grid-col2-main
+    width: 75.58%
+
+  .no-margin.grid-col2-sidebar
+    width: 22.41%
+
+  .no-margin.grid-col2-main
+    width: 77.58%
+
+  .grid-col3-sidebar
+    width: 27.01%
+
+  .grid-col3-main
+    width: 70.34%
+
+  .no-margin.grid-col3-sidebar
+    width: 27.01%
+
+  .no-margin.grid-col3-main
+    width: 70.34%
+
+  .hide-below-835
+    display: none
+
+
+/* ************************** Mobile version ************************* */
+@media only screen and (max-width: $mobile-max-width)
+  .container
+    max-width: 100%
+
+  .grid12-1,
+  .grid12-2,
+  .grid12-3,
+  .grid12-4,
+  .grid12-5,
+  .grid12-6,
+  .grid12-7,
+  .grid12-8,
+  .grid12-9,
+  .grid12-10,
+  .grid12-11,
+  .grid12-12,
+  .grid-full,
+  .grid-col2-sidebar,
+  .grid-col2-main,
+  .grid-col3-sidebar,
+  .grid-col3-main
+    margin-left: 0
+    margin-right: 0
+    width: 100%
+
+  .v-grid-container
+    display: block
+
+  .v-grid
+    display: block
+    float: inherit
+    width: 100%
+
+  .hide-below-835,
+  .hide-below-640
+    display: none
