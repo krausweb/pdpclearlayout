@@ -1,14 +1,11 @@
 # pdpclearlayout
-PDP responsive layout without Bootstrap and jQuery plugin
+PDP responsive skeleton layout without Bootstrap and jQuery plugin
 
-## Main Requirements:
-   1.    Cross-browser compatibility: IE8+ (Progressive Enhancement), FF (latest), Chrome (latest);
-   2.    Adaptive and/or responsive layout with media queries;
-   3.    Use CSS Preprocessors of your choice (SASS, LESS, Stylus);
-   4.    You can’t use Bootstrap or ready grid system
-   5.    Custom font family "Open Sans" and “Oswald” can be found at Google Fonts;
-   6.    Width of main container for desktop version should be 835px
- 
-## Additional Requirements:
-   1.    Don’t use JQuery UI or ready JQuery Plugins for pop-up, animation etc.
-  
+## Main Requirements
+    1. Cross-browser compatibility: Edge, FF, Chrome (latest 4 version + 1%);
+    2. Adaptive and responsive layout with media queries;
+    3. Used CSS Preprocessors (.sass);
+    4. Without Bootstrap or other ready grid system;
+    5. Font family "Open Sans" and “Oswald”;
+    6. Width of main container for desktop version 835px;
+    7. Used task manager Gulp

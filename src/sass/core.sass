@@ -2,8 +2,43 @@
  * 12-column grid system
  */
 
-@import "vars"
-@import "mixins"
+@import "./vars"
+@import "./mixins"
+
+
+/* ************************* Settings ************************ */
+
+body
+  background-color: $color-background
+  font-family: $font-regular
+ol, ul
+  list-style: none
+  margin: 0
+  padding: 0
+a
+  text-decoration: none
+  color: $color-text-a
+h1, h2, h3, h4, h5, h6
+  font-family: $font-bold
+[rel=help], [rel=license], [rel=tag]
+  font-family: $font-light
+button,
+input,
+optgroup,
+select,
+textarea
+  font-family: $font-regular
+input[type="number"]
+  width: 40px
+textarea
+  min-width: 400px
+  min-height: 100px
+button
+  cursor: pointer
+
+.container
+  width: $desktop-min-width
+
 
 /* ************************* Grid units ********************** */
 .grid12-1,
@@ -269,16 +304,31 @@
   margin-right: 0
   width: 65.90%
 
+.container
+  margin-left: auto
+  margin-right: auto
 
-/* ************************** Vertically aligned grid ********************** */
-.v-grid-container
+
+/* ************************** Vertically and Horizontal aligned grid ********************** */
+.vertical-grid-container
   display: table
   width: 100%
 
-.v-grid
+.vertical-grid
   float: none
   display: table-cell
   vertical-align: middle
+
+.horizontal-grid
+  text-align: center
+
+.horizontal-flex-container
+  display: flex
+
+.vertical-flex
+  display: flex
+  flex-direction: column
+  justify-content: center
 
 
 /* ************************ Containers **************************
@@ -334,69 +384,96 @@
 .grid-container-spaced:after
   clear: both
 
-.grid-container-spaced .grid12-1,
-.grid-container-spaced .grid12-2,
-.grid-container-spaced .grid12-3,
-.grid-container-spaced .grid12-4,
-.grid-container-spaced .grid12-5,
-.grid-container-spaced .grid12-6,
-.grid-container-spaced .grid12-7,
-.grid-container-spaced .grid12-8,
-.grid-container-spaced .grid12-9,
-.grid-container-spaced .grid12-10,
-.grid-container-spaced .grid12-11,
-.grid-container-spaced .grid12-12,
+// example .grid-container-spaced .grid12-1 (from 12-1 to 12-12)
++grid-creator('.grid-container-spaced .grid12-', 'margin-bottom', 2%)
 .grid-container-spaced .grid-full
   margin-bottom: 2%
 
+// example .grid-container-no-spaced .grid12-1 (from 12-1 to 12-12)
++grid-creator('.grid-container-no-spaced .grid12-', 'margin-bottom', 0)
+.grid-container-no-spaced .grid-full
+  margin-bottom: 0
 
 /* ********************** Grid presentation ****************** */
 .show-grid [class*="grid12-"]
-  background-color: #f6f6f6
+  background-color: #ffffff
   text-align: center
   min-height: 30px
   line-height: 30px
   transition: all 300ms ease-in-out
 
 .show-grid [class*="grid12-"]:hover
-  background-color: #ebebeb
+  background-color: gray
 
+
+/* ******************** Button / Input / Textarea ******************************************* */
+.button
+  overflow: hidden
+  white-space: nowrap
+  display: inline-block
+  text-overflow: ellipsis
+  padding: 5px 10px
+  border-radius: 1px
+  border: solid 1px
+  margin-top: 5px
+  margin-bottom: 5px
+  &.a
+    background-color: $color-green
+    border-color: transparent
+    &:hover
+      opacity: $color-button-hover
+.input
+  padding: 5px 10px
+  margin: 5px
 
 /* ******************** Utility classes ************************************ */
-.no-margin-left,
-.no-margin-right
+.no-margin-left
   margin-left: 0
+.no-margin-right
   margin-right: 0
 
-.margin-right
-  margin-right: $gap
-.margin-right-2
-  margin-right: $gap * 2
-.margin-right-3
-  margin-right: $gap * 3
-.margin-right-4
-  margin-right: $gap * 4
-.margin-right-5
-  margin-right: $gap * 5
+// by $gap
+  example from margin-left-1, to margin-left-right-10,
+    padding-left-1, padding-left-right-10
++gutter-creator(margin, left, $gap)
++gutter-creator(margin, right, $gap)
++gutter-creator(margin, top, $gap)
++gutter-creator(margin, bottom, $gap)
++gutter-creator(margin, left-right, $gap)
++gutter-creator(margin, top-bottom, $gap)
++gutter-creator(padding, left, $gap)
++gutter-creator(padding, right, $gap)
++gutter-creator(padding, top, $gap)
++gutter-creator(padding, bottom, $gap)
++gutter-creator(padding, left-right, $gap)
++gutter-creator(padding, top-bottom, $gap)
 
-.margin-left
-  margin-left: $gap
-.margin-left-2
-  margin-left: $gap * 2
-.margin-left-3
-  margin-left: $gap * 3
-.margin-left-4
-  margin-left: $gap * 4
-.margin-left-5
-  margin-left: $gap * 5
+// by percent
+  example from margin-left-percent-1, to margin-left-right-percent-10,
+    padding-left-percent-1, padding-left-right-percent-10
++gutter-percent-creator(margin, right, $gap)
++gutter-percent-creator(margin, left, $gap)
++gutter-percent-creator(margin, left-right, $gap)
++gutter-percent-creator(margin, top-bottom, $gap)
++gutter-percent-creator(padding, right, $gap)
++gutter-percent-creator(padding, left, $gap)
++gutter-percent-creator(padding, left-right, $gap)
++gutter-percent-creator(padding, top-bottom, $gap)
+
+.list-none
+  list-style: none
+  margin: 0
+  padding: 0
 
 
 /* ************************ Desktop version ************************ */
 @media only screen and (min-width: $desktop-min-width)
+  .hide-below-835,
+  .hide-below-640
+    display: inherit
+
   .container
     max-width: $desktop-width-container
-    margin-left: auto
-    margin-right: auto
 
   .nested-container
     margin-left: auto
@@ -426,13 +503,42 @@
   .no-margin.grid-col3-main
     width: 72.98%
 
-  .hide-below-835,
-  .hide-below-640
-    display: inherit
+  // by $gap
+    example from margin-left-1-desktop, to margin-left-right-10-desktop,
+      padding-left-1-desktop, padding-left-right-10-desktop
+  +gutter-creator(margin, right, $gap, 11, '-desktop')
+  +gutter-creator(margin, left, $gap, 11, '-desktop')
+  +gutter-creator(margin, left-right, $gap, 11, '-desktop')
+  +gutter-creator(margin, top-bottom, $gap, 11, '-desktop')
+  +gutter-creator(padding, right, $gap, 11, '-desktop')
+  +gutter-creator(padding, left, $gap, 11, '-desktop')
+  +gutter-creator(padding, left-right, $gap, 11, '-desktop')
+  +gutter-creator(padding, top-bottom, $gap, 11, '-desktop')
+
+  // by percent
+    example from margin-left-percent-1-desktop, to margin-left-right-percent-10-desktop,
+      padding-left-percent-1-desktop, padding-left-right-percent-10-desktop
+  +gutter-percent-creator(margin, right, $gap, 11, '-desktop')
+  +gutter-percent-creator(margin, left, $gap, 11, '-desktop')
+  +gutter-percent-creator(margin, left-right, $gap, 11, '-desktop')
+  +gutter-percent-creator(margin, top-bottom, $gap, 11, '-desktop')
+  +gutter-percent-creator(padding, right, $gap, 11, '-desktop')
+  +gutter-percent-creator(padding, left, $gap, 11, '-desktop')
+  +gutter-percent-creator(padding, left-right, $gap, 11, '-desktop')
+  +gutter-percent-creator(padding, top-bottom, $gap, 11, '-desktop')
 
 
 /* *************************** Tablet version ************************* */
 @media only screen and (min-width: $tablet-min-width) and (max-width: $desktop-max-width)
+  textarea
+    &.mobile
+      min-width: initial
+      min-height: 50px
+      width: 98%
+
+  .hide-below-835
+    display: none
+
   .container
     max-width: $tablet-width-container
 
@@ -460,12 +566,23 @@
   .no-margin.grid-col3-main
     width: 70.34%
 
-  .hide-below-835
-    display: none
+  .horizontal-grid-tm,
+  .horizontal-grid-tablet
+    text-align: center
 
 
 /* ************************** Mobile version ************************* */
 @media only screen and (max-width: $mobile-max-width)
+  textarea
+    &.mobile
+      min-width: initial
+      min-height: 50px
+      width: 98%
+
+  .hide-below-835,
+  .hide-below-640
+    display: none
+
   .container
     max-width: 100%
 
@@ -490,14 +607,41 @@
     margin-right: 0
     width: 100%
 
-  .v-grid-container
+  .vertical-grid-container
     display: block
 
-  .v-grid
+  .vertical-grid
     display: block
     float: inherit
     width: 100%
 
-  .hide-below-835,
-  .hide-below-640
-    display: none
+  .horizontal-grid-tm,
+  .horizontal-grid-mobile
+    text-align: center
+
+  .horizontal-flex-container
+    display: block
+
+  // by $gap
+    example from margin-left-1-mobile, to margin-left-right-10-mobile,
+      padding-left-1-mobile, padding-left-right-10-mobile
+  +gutter-creator(margin, right, $gap, 11, '-mobile')
+  +gutter-creator(margin, left, $gap, 11, '-mobile')
+  +gutter-creator(margin, left-right, $gap, 11, '-mobile')
+  +gutter-creator(margin, top-bottom, $gap, 11, '-mobile')
+  +gutter-creator(padding, right, $gap, 11, '-mobile')
+  +gutter-creator(padding, left, $gap, 11, '-mobile')
+  +gutter-creator(padding, left-right, $gap, 11, '-mobile')
+  +gutter-creator(padding, top-bottom, $gap, 11, '-mobile')
+
+  // by percent
+    example from margin-left-percent-1-mobile, to margin-left-right-percent-10-mobile,
+      padding-left-percent-1-mobile, padding-left-right-percent-10-mobile
+  +gutter-percent-creator(margin, right, $gap, 11, '-mobile')
+  +gutter-percent-creator(margin, left, $gap, 11, '-mobile')
+  +gutter-percent-creator(margin, left-right, $gap, 11, '-mobile')
+  +gutter-percent-creator(margin, top-bottom, $gap, 11, '-mobile')
+  +gutter-percent-creator(padding, right, $gap, 11, '-mobile')
+  +gutter-percent-creator(padding, left, $gap, 11, '-mobile')
+  +gutter-percent-creator(padding, left-right, $gap, 11, '-mobile')
+  +gutter-percent-creator(padding, top-bottom, $gap, 11, '-mobile')

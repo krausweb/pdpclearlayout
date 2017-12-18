@@ -2,3 +2,44 @@
  * Common Mixins
  */
 
+// gutter margin/padding by $gap
+=gutter-creator($type, $side, $gap, $multiply-to: 11, $ending: null)
+  @for $i from 1 to $multiply-to
+    @if ($side == 'left-right')
+      .#{$type}-#{$side}-#{$i}#{$ending}
+        #{$type}-left: $gap * $i
+        #{$type}-right: $gap * $i
+    @else if ($side == 'top-bottom')
+      .#{$type}-#{$side}-#{$i}#{$ending}
+        #{$type}-top: $gap * $i
+        #{$type}-bottom: $gap * $i
+    @else
+      .#{$type}-#{$side}-#{$i}#{$ending}
+        #{$type}-#{$side}: $gap * $i
+
+// gutter margin/padding by percent
+=gutter-percent-creator($type, $side, $gap, $multiply-to: 11, $ending: null)
+  @for $i from 1 to $multiply-to
+    @if $side == 'left-right'
+      .#{$type}-#{$side}-percent-#{$i}#{$ending}
+        #{$type}-left: $i#{%}
+        #{$type}-right: $i#{%}
+        @if $ending == '-mobile'
+          width: (100 - ($i * 2))#{%}
+    @else if $side == 'top-bottom'
+      .#{$type}-#{$side}-percent-#{$i}#{$ending}
+        #{$type}-top: $i#{%}
+        #{$type}-bottom: $i#{%}
+        @if $ending == '-mobile'
+          width: (100 - ($i * 2))#{%}
+    @else
+      .#{$type}-#{$side}-percent-#{$i}#{$ending}
+        #{$type}-#{$side}: $i#{%}
+        @if $ending == '-mobile'
+          width: (100 - $i)#{%}
+
+// grid creator from 1 to 12
+=grid-creator($suffix, $property, $val, $to: 13)
+  @for $i from 1 to $to
+    #{$suffix}#{$i}
+      #{$property}: $val
